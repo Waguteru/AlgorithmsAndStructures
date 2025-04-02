@@ -1,0 +1,37 @@
+public class SticksGame {
+
+    public static void main(String[] args) {
+        long n = 25; // начальное количество палочек
+        long taniaSticks = solve(n);
+        System.out.println("Количество палочек у Тани: " + taniaSticks);
+    }
+
+    public static long solve(long n) {
+        long tania = 0;
+        boolean taniaTurn = true;
+
+        while (n > 0) {
+            if (taniaTurn) {
+                if (n % 2 == 0) {
+                    // Таня выбирает взять половину, если это возможно, иначе берет 1
+                    long take = (n / 2 >= 1) ? n / 2 : 1;
+                    tania += take;
+                    n -= take;
+                } else {
+                    tania += 1;
+                    n -= 1;
+                }
+            } else {
+                // Ход Саши: берет максимально возможное количество
+                if (n % 2 == 0) {
+                    long take = (n / 2 >= 1) ? n / 2 : 1;
+                    n -= take;
+                } else {
+                    n -= 1;
+                }
+            }
+            taniaTurn = !taniaTurn; // Переключение хода
+        }
+        return tania;
+    }
+}
