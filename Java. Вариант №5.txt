@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class SumOfSquares {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Введите числа через пробел: ");
+        String input = scanner.nextLine();
+        
+        String[] numbers = input.split(" "); // Разделяем строку на массив строк
+        int sumOfSquares = 0; // Инициализируем переменную для суммы квадратов
+        
+        for (String num : numbers) {
+            int number = Integer.parseInt(num); // Преобразуем строку в число
+            sumOfSquares += number * number; // Добавляем квадрат числа к общей сумме
+        }
+        
+        System.out.println("Сумма квадратов: " + sumOfSquares);
+        scanner.close(); 
+    }
+}
