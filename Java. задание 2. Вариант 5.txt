@@ -1,0 +1,48 @@
+public class MemoryCell {
+
+    public static void main(String[] args) {
+        // Инициализируем массив для хранения чисел. Размер массива - 3.
+        int[] memory = new int[3];
+
+        // Заполняем массив значением по умолчанию (-1), чтобы обозначить пустые ячейки.
+        for (int i = 0; i < memory.length; i++) {
+            memory[i] = -1;
+        }
+
+        addNumber(memory, 5);
+        addNumber(memory, 2);
+        addNumber(memory, 8);
+        addNumber(memory, 1); // Заменит наименьшее (2)
+
+        // Вывод содержимого ячейки памяти.
+        System.out.print("Содержимое ячейки памяти: ");
+        for (int i = 0; i < memory.length; i++) {
+            System.out.print(memory[i] + " ");
+        }
+        System.out.println();
+    }
+
+    // Метод для добавления числа в ячейку памяти.
+    public static void addNumber(int[] memory, int number) {
+        // Ищем первую пустую ячейку (-1).
+        for (int i = 0; i < memory.length; i++) {
+            if (memory[i] == -1) {
+                memory[i] = number;
+                return; // Выходим из метода, если нашли и заполнили пустую ячейку.
+            }
+        }
+
+        // Если пустых ячеек нет, находим наименьшее число в массиве.
+        int minIndex = 0;
+        for (int i = 1; i < memory.length; i++) {
+            if (memory[i] < memory[minIndex]) {
+                minIndex = i;
+            }
+        }
+
+        // Если новое число больше наименьшего, заменяем наименьшее число новым.
+        if (number > memory[minIndex]) {
+            memory[minIndex] = number;
+        }
+    }
+}
